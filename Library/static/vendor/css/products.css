@@ -1,0 +1,127 @@
+body {
+    padding-top: 56px;
+    background: url("../img/walp1.jpg") no-repeat center top fixed;
+}
+
+.products-sidebar-wrapper {
+    border: 1px solid #efefef;
+    padding: 17px 18px 29px;
+    background-color: #FFFF;
+    margin-top: 23px;
+}
+
+h4.proudct-sidebar-title {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+}
+
+
+.shop-catigory > ul {
+    border-top: 1px solid #ebebeb;
+    margin: 18px 0 0;
+    padding: 27px 0 0;
+}
+.shop-catigory ul > li {
+    display: block;
+    list-style: outside none none;
+    padding: 0 0 13px;
+}
+.shop-catigory ul > li:last-child {
+    padding: 0 0 0px;
+}
+.shop-catigory ul > li ul li:last-child {
+    padding: 7px 0 0 15px;
+}
+.shop-catigory ul > li a {
+    color: #242424;
+    display: block;
+}
+.shop-catigory ul li:hover > a {
+    color: #7abaff;
+}
+.shop-catigory ul li:hover > a i {
+    color: #7abaff;
+}
+.shop-catigory ul > li a i {
+    float: right;
+    color: #7a7a7a;
+    font-size: 14px;
+}
+.shop-catigory ul > li > ul li {
+    padding: 7px 0 0 15px;
+}
+.shop-catigory ul > li ul li a {
+    color: #666;
+}
+
+
+.product-view{
+    margin-top: 23px;
+    padding: 30px;
+    background-color: rgba(65, 20, 176, 0.3);
+    border-radius: 10px;
+    margin-bottom: 5%;
+}
+
+.product-wrapper {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    width: 250px;
+    height: 750px;
+}
+.product-img {
+  border: 1px solid #e9e9e9;
+  position: relative;
+}
+.product-img > span {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 100px;
+  color: #fff;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  right: 10px;
+  line-height: 1;
+  position: absolute;
+  top: 10px;
+  height: 60px;
+  width: 60px;
+  line-height: 45px;
+  text-align: center;
+}
+.product-img img {
+    width: 100%;
+    height: 300px;
+}
+
+.card-body{
+    height: 370px;
+}
+
+
+.card-body > h5{
+    font-size: 13px;
+    color: #6610f2;
+}
+
+.card-body > p{
+    color: black;
+    font-size: 10px;
+}
+
+
+.card-title {
+    text-align: center;
+}
+
+.card-title > p{
+    font-size: 15px;
+}
+
+.not-found-books{
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
