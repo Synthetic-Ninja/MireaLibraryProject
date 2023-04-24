@@ -1,0 +1,33 @@
+{% extends 'Books/base.html' %}
+{%  load static %}
+
+{% block css %}
+    <link href="{% static 'vendor/css/index.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<!-- Page Content -->
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mx-auto d-flex align-items-cente">
+                <div class="text_container">
+                <h1 class="mt-5">Book Haven</h1>
+                <br><br>
+                <p>
+                    Добро пожаловать на сайт нашей библиотеки! Мы предлагаем широкий выбор книг на различные тематики: от классической литературы до современных бестселлеров. Наши квалифицированные библиотекари всегда готовы помочь вам подобрать интересную книгу и ответить на любые вопросы. Кроме того, мы проводим различные мероприятия, такие как литературные вечера, дискуссии и книжные выставки. Зарегистрируйтесь на сайте, чтобы получить доступ к электронной библиотеке и заказать книги на дом. Мы рады видеть вас в нашей библиотеке!
+                </p>
+                
+                <button id="start-purchase-btn" type="button" class="btn btn-lg">
+                    <a id="start-purchase-link" href="{% url 'Books:index' %}">
+                        Начать пользоваться библиотекой
+                    </a>
+                </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
