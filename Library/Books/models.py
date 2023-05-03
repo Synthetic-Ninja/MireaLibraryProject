@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import date
+import re
 
 
 class BookType(models.Model):
@@ -53,3 +54,9 @@ class Book(models.Model):
                     }
         return keywords.get(str(self.created_place), self.created_place)
 
+    def get_author(self) -> str:
+        pattern = r'[А-Яа-я]+\s[А-Яа-я]+\s[А-Яа-я]\s*'
+        if re.search(pattern, self.authors):
+            author = self.authors.split()
+            return f'{author[0]} {author[1][:1]}.{author[2][:1]}.'
+        return self.authors
