@@ -26,7 +26,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container">
-        <a class="navbar-brand" href="{% url 'index' %}">Book Haven</a>
+        <a class="navbar-brand" href="{% url 'index' %}">Book Heaven</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -36,7 +36,7 @@
                 <li class="nav-item">
                     <a class="nav-link custom_nav_item" href="{% url 'Books:index' %}">Каталог</a>
                 </li>
-                {% if user.authenticated %}
+                {% if user.is_authenticated %}
                     <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
@@ -44,17 +44,17 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li>
-                            <a class="dropdown-item" href="users/profile.html">Профиль</a>
+                            <a class="dropdown-item" href="{% url 'Users:profile' %}">Профиль</a>
                         </li>
                         <li><a class="dropdown-item" href="orders/orders.html">Заказы</a></li>
                         {% if user.is_superuser or user.is_staff %}
-                            <li><a class="dropdown-item" href="#">Админ-панель</a></li>
+                            <li><a class="dropdown-item" href="{% url 'admin:index' %}">Админ-панель</a></li>
                             <li>
                         {% endif %}
                             <hr class="dropdown-divider">
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{% url 'Users:logout' %}">
                                 Выйти
                             </a>
                         </li>
@@ -62,7 +62,7 @@
                 </li>
                 {% else %}
                     <li class="nav-item">
-                    <a class="nav-link" href="users/login.html">Войти</a>
+                    <a class="nav-link" href="{% url 'Users:login' %}">Войти</a>
                 </li>
                 {% endif %}
 
