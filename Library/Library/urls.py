@@ -24,7 +24,8 @@ from Books.views import IndexView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', IndexView.as_view(), name='index'),
-    path('products/', include('Books.urls', namespace='Books'))
+    path('products/', include('Books.urls', namespace='Books')),
+    path('users/', include('Users.urls', namespace='Users')),
 
 ]
 
