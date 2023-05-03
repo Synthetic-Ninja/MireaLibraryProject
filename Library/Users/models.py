@@ -3,6 +3,7 @@ import uuid
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import RegexValidator
+from django.core.exceptions import ValidationError
 
 
 def default_basket() -> dict:
@@ -34,3 +35,9 @@ class User(AbstractUser):
     class Meta:
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
+
+    def clean(self):
+        super().clean()
+        if User.objects.filter(document_seria=self.document_seria, document_number=self.document_number):
+            raise ValidationError("Пользователь с таким документом уже существует")
+    
