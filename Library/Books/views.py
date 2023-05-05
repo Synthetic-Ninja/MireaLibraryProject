@@ -24,6 +24,8 @@ class BookListView(TitleMixin, ListView):
             queryset = queryset.filter(type=book_type)
         if book_rubric := self.request.GET.get('rubric'):
             queryset = queryset.filter(rubric=book_rubric)
+        if year := self.request.GET.get('year'):
+            queryset = queryset.filter(created_year=year)
         return queryset
 
     def get_context_data(self, *, object_list=None, **kwargs):

@@ -35,7 +35,7 @@ class Book(models.Model):
     created_year = models.PositiveIntegerField()
     created_place = models.CharField(max_length=128)
     pages_count = models.PositiveIntegerField()
-    # Цена выражена числом Decimal с 10 цифрами и 2 знаками после запятой
+    # Цена выражена числом Decimal с 11 цифрами и 2 знаками после запятой
     price = models.DecimalField(max_digits=11, decimal_places=2)
     count = models.PositiveIntegerField()
 
