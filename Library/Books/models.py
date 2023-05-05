@@ -9,7 +9,7 @@ class BookType(models.Model):
     # Ограничение времени владения книгой, выраженное целым числом дней
     time_limit = models.PositiveIntegerField(default=0)
     # Размер штрафа для типа книги
-    forfeit = models.FloatField(default=0.0)
+    forfeit = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
 
     def __str__(self):
         return f'[{self.id}] - {self.name}'
@@ -38,6 +38,17 @@ class Book(models.Model):
     # Цена выражена числом Decimal с 10 цифрами и 2 знаками после запятой
     price = models.DecimalField(max_digits=11, decimal_places=2)
     count = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.name
+
+    def increment_count(self) -> None:
+        self.count += 1
+        super().save()
+
+    def decrement_count(self) -> None:
+        self.count -= 1
+        super().save()
 
     def get_created_year(self) -> str:
         return str(self.created_year) \
