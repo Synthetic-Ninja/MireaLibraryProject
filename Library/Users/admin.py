@@ -10,7 +10,6 @@ from django.contrib.auth.forms import UserCreationForm
 
 class CustomUserCreationForm(UserCreationForm):
 
-
     username = forms.CharField(widget=forms.TextInput, label='Имя пользователя')
     password1 = forms.CharField(widget=forms.PasswordInput, label='Пароль')
     password2 = forms.CharField(widget=forms.PasswordInput, label='Подтверждение пароля')
@@ -23,13 +22,15 @@ class CustomUserCreationForm(UserCreationForm):
 
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):
-
     add_form = CustomUserCreationForm
     add_fieldsets = (
         ('Данные для входа', {'fields': ('username', 'password1', 'password2')}),
         ('Персональные данные', {'fields': ('first_name', 'last_name', 'email', 'document_seria', 'document_number')}),
     )
 
-    list_display = ('last_name', 'first_name', 'username', 'email', 'id')
-
-# Register your models here.
+    fieldsets = (
+        (None, {'fields': ('username', 'password')}),
+        ('Personal info', {'fields': ('first_name', 'last_name', 'email', 'document_seria', 'document_number')}),
+        ('Permissions', {'fields': ('is_active', 'is_staff', 'is_superuser',
+                                    'groups', 'user_permissions')}),
+    )

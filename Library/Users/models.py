@@ -40,4 +40,8 @@ class User(AbstractUser):
         super().clean()
         if User.objects.filter(document_seria=self.document_seria, document_number=self.document_number):
             raise ValidationError("Пользователь с таким документом уже существует")
+
+    def clear_cart(self):
+        self.cart = default_basket()
+        self.save()
     
