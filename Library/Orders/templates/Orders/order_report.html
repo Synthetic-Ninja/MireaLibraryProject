@@ -1,0 +1,36 @@
+{% extends 'Books/base.html' %}
+{% load static %}
+{% block css %}
+    <link href="{% static '/vendor/css/auth.css' %}" rel="stylesheet"/>
+{% endblock %}
+
+{% block content %}
+    <div id="layoutAuthentication">
+    <div id="layoutAuthentication_content">
+        <main>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5">
+                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                            <div class="card-header">
+                                <h3 class="text-center font-weight-light my-4">Ваши заказы {% if not success_orders%}не{% else %}успешно{% endif %} сформированы!</h3>
+                            </div>
+                            <div class="card-body text-center">
+                                {% if error_orders %}
+                                    <h4>
+                                        Заказы которые не удалось сформировать:
+                                    </h4>
+                                    {% for order in error_orders  %}
+                                        <p>Книга: {{ order.object }}</p>
+                                        <p>Ошибка: {{ order.error}}</p><br><br>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock %}

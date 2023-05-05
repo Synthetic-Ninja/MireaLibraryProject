@@ -1,0 +1,63 @@
+{% extends 'Books/base.html' %}
+{% load static %}
+{% load base_tags %}
+
+{% block css %}
+<link href="{% static '/vendor/css/orders.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<!-- Page Content -->
+<section>
+    <div class="container pt-5">
+
+        <div class="text-center mt-5">
+            {% if object_list %}
+            <h1>Заказы</h1>
+            <div class="orders mt-5">
+                {% if overdue_objects %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert" style="margin-top: 50px;">
+                        <strong>Внимание у вас есть задолженность!</strong>  <br>
+                        {% for object in overdue_objects %}
+                            Заказ #{{ object.id }} [Книга : '{{ object.book.name }}'  Cрок возврата истек: {{ object.expires_in}}; Штраф: {{ object.forfeit }}]
+                        {% endfor %}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                {% endif %}
+
+                <table class="table">
+                    <thead>
+                    <tr class="table-light">
+                        <th scope="col">#</th>
+                        <th scope="col">Статус</th>
+                        <th scope="col">Название книги</th>
+                        <th scope="col">Создан</th>
+                        <th scope="col">Истекает</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for object in object_list %}
+                        <tr class="{{ object.status|get_status_color }}">
+                        <th scope="row">{{ object.id }}</th>
+                        <td>{{ object.get_status_display}}</td>
+                        <td>{{ object.book.name}}</td>
+                        <td>{{ object.created_at }}</td>
+                        <td>{{ object.expires_in }}</td>
+
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <h1>Заказы не найдены!</h1>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
