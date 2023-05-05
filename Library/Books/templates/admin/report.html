@@ -1,10 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'Books/base.html' %}
+{% load static %}
+{% load base_tags %}
+
+{% block css %}
+<link href="{% static '/vendor/css/orders.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<!-- Page Content -->
+<section>
+    <div class="container pt-5">
+
+        <div class="text-center mt-5">
+            <h1>Book Report</h1>
+            <div class="orders mt-5">
+                {% for publish_house in publishing_house %}
+                <table class="table">
+                    <thead>
+                    ИЗДАТЕЛЬСТВО: {{ publish_house.name }}
+                    <tr class="table-primary">
+                        <th scope="col">Название книги</th>
+                        <th scope="col">Количество</th>
+                        <th scope="col">Кол-во востребований</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for book in publish_house.books %}
+                        <tr class="table-light">
+                        <th scope="row">{{book.name}}</th>
+                        <td>{{ book.count}}</td>
+                        <td>{{book.count_of_demands}}</td>
+
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                    <br><br>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
