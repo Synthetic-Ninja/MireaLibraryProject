@@ -1,14 +1,14 @@
 from dataclasses import dataclass
 
-from django.contrib import admin
 from django.shortcuts import render
 
 from .models import BookType, BookRubric, Book
 from Orders.models import Order
 
-from django.urls import path, reverse
 from django.contrib import admin
 from django.conf.urls import url
+
+from django.http import Http404
 
 
 @dataclass
@@ -20,8 +20,8 @@ class PublishingHouse:
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
     change_list_template = 'admin/model_change_list.html'
-    list_display = ('name', 'type', 'rubric', 'count', 'is_available')
-    fields = ('is_available', 'name', 'rubric', 'type', 'authors',
+    list_display = ('name', 'type', 'rubric', 'count', 'is_available', 'is_empty')
+    fields = ('is_available', 'is_empty', 'name', 'rubric', 'type', 'authors',
               'created_year', 'created_place', 'pages_count',
               'price', 'count', 'image')
 
@@ -31,6 +31,8 @@ class BookAdmin(admin.ModelAdmin):
         return custom_urls + urls
 
     def process_export(self, request):
+        if not request.user.is_authenticated:
+            raise Http404
         books_group_by_created_place = {}
         data = Book.objects.all()
         for item in data:

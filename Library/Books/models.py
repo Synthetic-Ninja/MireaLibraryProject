@@ -7,7 +7,7 @@ class BookType(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=128, unique=True)
     # Ограничение времени владения книгой, выраженное целым числом дней
-    time_limit = models.PositiveIntegerField(default=0)
+    time_limit = models.PositiveIntegerField(default=7)
     # Размер штрафа для типа книги
     forfeit = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
 
@@ -38,6 +38,7 @@ class Book(models.Model):
     # Цена выражена числом Decimal с 11 цифрами и 2 знаками после запятой
     price = models.DecimalField(max_digits=11, decimal_places=2)
     count = models.PositiveIntegerField()
+    is_empty = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
