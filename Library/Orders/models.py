@@ -1,8 +1,5 @@
 from django.db import models
 from datetime import timedelta, datetime
-from decimal import Decimal
-
-
 
 from django.core.exceptions import ValidationError
 
@@ -51,12 +48,11 @@ class Order(models.Model):
         [ {self.user.document_seria} {self.user.document_number} ] | Книга [{self.book.name}]'
 
     def clean(self):
-        if not self.book.is_available:
+        if not self.book.is_available and self.status in ['created', 'processing', 'issued']:
             raise ValidationError('Книгу невозможно добавить в заказ')
 
-        if Order.objects.filter(user=self.user, book_id=self.book, book_is_taken=True) and self.status in ['issued',
-                                                                                                           'created',
-                                                                                                           'processing']:
+        if Order.objects.filter(user=self.user, book_id=self.book, book_is_taken=True) \
+                and self.status in ['issued', 'created', 'processing']:
             raise ValidationError('Такая книга уже выдана')
 
     def save(self, *args, **kwargs):
@@ -69,7 +65,7 @@ class Order(models.Model):
                 if not self.book_is_taken:
                     self.book_is_taken = True
                     self.book.decrement_count()
-                self.expires_in = get_expires_data(self.updated_at, -1)
+                self.expires_in = get_expires_data(self.updated_at, self.book.type.time_limit)
 
             case 'complete' | 'canceled':
                 if self.book_is_taken:
@@ -81,4 +77,3 @@ class Order(models.Model):
                 self.forfeit = self.book.price * self.book.type.forfeit
 
         super().save(*args, **kwargs)
-
