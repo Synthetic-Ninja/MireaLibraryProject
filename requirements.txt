@@ -1,0 +1,11 @@
+asgiref==3.6.0
+Django==3.2.18
+freetype-py==2.3.0
+Pillow==9.5.0
+psycopg2-binary==2.9.6
+pycairo==1.23.0
+python-dotenv==1.0.0
+pytz==2023.3
+reportlab==4.0.0
+rlPyCairo==0.2.0
+sqlparse==0.4.3
