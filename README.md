@@ -41,16 +41,16 @@
 2. Перейдите в папку с проектом , затем создайте и активируйте виртуальное окружение
    
     2.1 Для Windows
-        ~~~powershell
-        python -m venv .venv
-        .\venv\Scripts\Activate.ps1
-        ~~~
+    ~~~powershell
+    python -m venv .venv
+    .\venv\Scripts\Activate.ps1
+    ~~~
 
     2.2 Для Linux/Mac OS
-        ~~~sh
-        python3 -m venv .venv
-        source ./venv/bin/activate
-        ~~~
+    ~~~sh
+    python3 -m venv .venv
+    source ./venv/bin/activate
+    ~~~
 
 
 
